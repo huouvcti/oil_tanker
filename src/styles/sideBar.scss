@@ -1,0 +1,155 @@
+.sideBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    width: 80px;
+    height: 100%;
+    background-color: #181C32;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.sideBar label {
+    cursor: pointer;
+    color: #a2a7b4;
+
+    padding: 25px 0;
+
+    
+    
+
+    svg {
+        font-size: 36px;
+        width: 100%;
+    }
+}
+
+.sideBar #menuShow {
+    display: none;
+}
+
+
+.sideBar .menuUl {
+
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    gap: 20px;
+    
+
+    li {
+        position: relative;
+
+        padding: 10px;
+        border-radius: 7px;
+
+        display: flex;
+        align-items: center;
+
+        transition: 0.3s;
+
+        a {
+            color: #a2a7b4;
+            text-decoration: none;
+
+            
+            svg {
+                font-size: 22px;
+            }
+            
+            span {
+                position: absolute;
+                top: 0px;
+                left: 60px;
+
+                display: block;
+                width: 0px;
+                height: 0px;
+                overflow: hidden;
+
+                transition: 0.2s;
+            }
+        }
+    }
+
+    li:hover {
+
+        background-color: #303C80;
+        
+        span {
+            position: absolute;
+            
+
+            border-radius: 5px;
+            padding: 10px 10px;
+
+            background-color: #303C80;
+            color: #c1c5cf;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0px 0px 5px #181C32;
+
+            display: block;
+            width: max-content;
+            height:max-content;
+            overflow: hidden;
+        }
+
+    
+    }
+}
+
+
+.logoutBtn {
+    position: absolute;
+    bottom: 0;
+    height: 150px;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+
+    a {
+        color: #a2a7b4;
+        text-decoration: none;
+
+        padding: 10px;
+        border-radius: 7px;
+        
+        transition: 0.3s;
+
+        
+        svg {
+            font-size: 30px;
+        }
+        
+        span {
+            position: absolute;
+            top: 0px;
+            left: 60px;
+
+            display: block;
+            width: 0px;
+            height: 0px;
+            overflow: hidden;
+
+            transition: 0.2s;
+        }
+    }
+
+    a:hover {
+        background-color: #3F2766;
+        
+
+    }
+}
