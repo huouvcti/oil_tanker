@@ -32,7 +32,7 @@ const Main = () => {
             <div className='main'>
 
               <div className='contents'>
-                <div className='inform'>
+                {/* <div className='inform'>
                   <h1>유조선 정보</h1>
 
                   <ul>
@@ -77,7 +77,7 @@ const Main = () => {
                     </li>
 
                   </ul>
-                </div>
+                </div> */}
                 <div className='mapWrap'>
                   <KakaoMap></KakaoMap>
                 </div>
