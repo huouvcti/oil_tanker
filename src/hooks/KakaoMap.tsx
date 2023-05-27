@@ -102,7 +102,7 @@ const KakaoMap = () => {
 
         // 마커 클릭 이벤트
         window.kakao.maps.event.addListener(marker, 'click', function() {
-            document.getElementsByClassName('cctvWrap_')[0].className = "cctvWrap";
+            document.getElementsByClassName('cctvWrap')[0].className = "cctvWrap";
             
 
         });

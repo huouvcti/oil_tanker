@@ -102,7 +102,7 @@ const Main = () => {
   
 
   const cctvExit = () => {
-    document.getElementsByClassName('cctvWrap')[0].className = "cctvWrap_";
+    document.getElementsByClassName('cctvWrap')[0].className = "cctvWrap cctvWrap_";
     
   }
 
@@ -262,7 +262,7 @@ const Main = () => {
                 <button className='mapResetBtn' onClick={KakaoMap_center}>위치 초기화</button> 
 
 
-                <div className='cctvWrap_'>
+                <div className='cctvWrap cctvWrap_ '>
                   <button onClick={cctvExit}>나가기</button>
 
                   <div className="cctv_view_wrap">
