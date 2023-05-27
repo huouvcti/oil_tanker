@@ -1,7 +1,7 @@
 .contents{
     display: flex;
     flex-direction: row;
-    height: 100%;
+    height: calc(100%);
 }
 
 .inform {
@@ -74,35 +74,285 @@
     z-index: 100;
     right: 0;
 
+    background-color: rgba(0, 0, 0, 0.5);
+
+    width: 400px;
+    height: calc(100% - 60px);
+
+    color: #fff;
+    text-align: center;
+
+}
+
+.cctvWrap_ {
+    display: none;
+}
+
+
+.cctv_view_wrap{
+    width: 100%;
+}
+
+.cctv_view {
+    width: 100%;
+    height: 200px;
+}
+
+
+
+
+
+.mapResetBtn {
+    position: absolute;
+    left: 400px;
+    top: 80px;
+    z-index: 100;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;;
+    border: none;
     background-color: #fff;
-    box-shadow: 0px 0px 10px #888;
+    cursor: pointer;
+}
+
+
+
+
+.shipInfo_wrap{
+    position: absolute;
+    z-index: 200;
+
+    width: 380px;
+    height: calc(100% - 60px);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+
+    color: #fff;
+
+
+    display: flex;
+    flex-direction: column;
+
+
+
+
+    hr {
+        background-color: #8D8D8D;
+        height:0.3px;
+        border:0;
+    }
+
+
+
+    .toggle[type="checkbox"] {
+        appearance: none;
+        position: relative;
+        border: max(2px, 0.1em) solid #fff;
+        // background-color: #fff;
+        border-radius: 50px;
+        width: 83px;
+        height: 30px;
+      }
+      
+      .toggle[type="checkbox"]::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        transform: scale(0.8);
+        background-color: #fff;
+        transition: left 250ms linear;
+      }
+      
+      .toggle[type="checkbox"]:checked {
+        background-color: #333;
+      }
+      
+      .toggle[type="checkbox"]:checked::before {
+        background-color: #fff;
+        left: 53px;
+    }
+      
+      
+      
+      
+}
+
+
+.currentTime_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 60px;
+}
+
+
+.searchOption_wrap {
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+    padding: 20px 30px;
+
+
+
+    .searchOption {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+    }
+
+
+    .inputDate {
+        padding: 10px 5px;
+        font-weight: bold;
+        width: 120px;
+    }
+}
+
+
+
+.shipInfoList_wrap {
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+
+    .ship_more_close {
+        appearance: none;
+        position: absolute;
+        opacity: 0;
+    }
+
+
+
+
+    .shipInfoList {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-left: 30px;
+        align-items: center;
+        
+
+        .ship_visible[type="checkbox"] {
+            appearance: none;
+            position: relative;
+            border: max(2px, 0.1em) solid #fff;
+            // background-color: #fff;
+            border-radius: 5px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        .ship_visible[type="checkbox"]::before {
+            content:'✔';
+            font-size: 20px;
+            color: #333;
+            position: absolute;
+            left: 5px;
+            width: 30px;
+            height: 30px;
+            opacity: 0%;
+            transition: 0.2s;
+        }
+        .ship_visible[type="checkbox"]:checked {
+            background-color: #fff;
+        }
+        .ship_visible[type="checkbox"]:checked::before {
+            opacity: 100%;
+        }
+        
+
+        .shipInfo_text {
+            display: flex;
+            flex-direction: column;
+            padding-left: 20px;
+            gap: 5px;
+            width: 250px;
+            text-align: left;
+        }
+
+
+        .ship_more_visible[type="radio"] {
+            appearance: none;
+            position: relative;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        .ship_more_visible[type="radio"]:focus {
+            outline: none;
+        }
+
+        .ship_more_visible[type="radio"]::before {
+            content:'⋮';
+            font-size: 30px;
+            font-weight: bold;
+            color: #fff;
+            position: absolute;
+            left: 5px;
+            width: 30px;
+            height: 30px;
+            transition: 0.2s;
+        }
+
+        .ship_more_visible[type="radio"]:checked ~ .ship_more{
+            opacity: 100%;
+            display: flex;
+        }
+
+        .ship_more {
+            position: absolute;
+            left: 380px;
+            top: 186px;
+
+            width: 300px;
+            height: 500px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+
+            opacity: 0%;
+            transition: 0.2s;
+
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+            
+            display: none;
+            
+            img {
+                position: relative;
+                width: calc(100% + 40px);
+                height: 200px;
+                object-fit: cover;
+                left: -20px;
+            }
+
+            ul {
+                list-style: none;
+            }
+        }
+
+        .ship_more_close_btn {
+            font-size: 18px;
+            position: absolute;
+            z-index: 300;
+            right: 20px;
+            top: 15px;
+            color: #fff;
+
+            cursor: pointer;
+        }
+    }
+
 
     
 
-    width: 800px;
-    height: calc(100% - 75px);
-    transition: width 0.7s ease-in-out;
-}
 
-
-.cctvWrap_ {
-    width: 0px;
-    height: 0px;
-    overflow: hidden;
-}
-
-
-.cctv_back {
-    position: absolute;
-    z-index: 99;
-
-    width: calc(100% - 80px);
-    height: calc(100% - 75px);
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.cctv_back_ {
-    width: 0px;
-    height: 0px;
-    overflow: hidden;
 }
