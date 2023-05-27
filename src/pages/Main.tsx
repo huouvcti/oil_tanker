@@ -71,9 +71,9 @@ const Main = () => {
     kakaoMap_basic();
 
 
-    const client0 = new WebSocket('ws://localhost:9000');
-    const client1 = new WebSocket('ws://localhost:9001');
-    const client2 = new WebSocket('ws://localhost:9002');
+    const client0 = new WebSocket('ws://ocean-gps.com:9000');
+    const client1 = new WebSocket('ws://ocean-gps.com:9001');
+    const client2 = new WebSocket('ws://ocean-gps.com:9002');
     // const client4 = new WebSocket('ws://localhost:9004');
 
     const cctv_view = document.getElementsByClassName('cctv_view');
