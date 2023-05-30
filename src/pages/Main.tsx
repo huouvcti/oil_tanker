@@ -69,6 +69,7 @@ const Main = () => {
 
   useEffect(() =>  {
     kakaoMap_basic();
+    KakaoMap_route();
 
 
     const client0 = new WebSocket('ws://ocean-gps.com:9000');

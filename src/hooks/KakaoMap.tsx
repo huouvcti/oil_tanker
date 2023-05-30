@@ -90,56 +90,64 @@ const KakaoMap = () => {
         window.kakao.maps.event.addListener(marker, 'click', function() {
             document.getElementsByClassName('cctvWrap')[0].className = "cctvWrap";
             
+            
 
         });
     }
 
 
     const KakaoMap_shipList = (): any => {
-        const currnet_position_marker = []
+        const currnet_position_marker: any = []
 
         const [shipList, setShipList] = useState([]);
 
-        axios({
-            method:"GET",
-            url:"/api/gpsAPI/gps_current"
-            }).then(function(res){
-                // API로 부터 받은 데이터 출력(클라이언트 IP출력)
+        useEffect(() => {
+            axios({
+                method:"GET",
+                url:"/api/gpsAPI/gps_current"
+                }).then(function(res){
+                    // API로 부터 받은 데이터 출력(클라이언트 IP출력)
+    
+                    let api_data = res.data;
+    
+                    api_data.forEach((item: any, index: any, arr: any) => {
+                        let position = new window.kakao.maps.LatLng(item['latitude'], item['longitude']);
+                        currnet_position_marker[index] = new window.kakao.maps.Marker({
+                            map: map,
+                            position: position
+                        });
 
-                let api_data = res.data;
-
-                api_data.forEach((item: any, index: any, arr: any) => {
-                    let position = new window.kakao.maps.LatLng(item['latitude'], item['longitude']);
-                    currnet_position_marker[index] = new window.kakao.maps.Marker({
-                        map: map,
-                        position: position
-                    });
-
-                    setShipList(api_data)
-
-
-                    
-            
-                })
-
-
-                console.log(shipList)
-
-
-
+                        window.kakao.maps.event.addListener(currnet_position_marker[index], 'click', function() {
+                            // document.getElementsByClassName('cctvWrap')[0].className = "cctvWrap";
+                            
+                            let ship_more_radio: any =  document.getElementsByClassName('ship_more_visible');
+                            ship_more_radio[index].checked = true;
+                        });
+    
+                        setShipList(api_data)
                 
-
-                console.log(res.data);
-            }).catch(error => {
-                console.log(error);
-        });
+                    })
+    
+    
+                    console.log(shipList)
+    
+    
+    
+                    
+    
+                    console.log(res.data);
+                }).catch(error => {
+                    console.log(error);
+            });
+        }, [])
+        
 
         console.log(shipList)
 
         
         const currentLocation_move = (value: any): any => {
             let currentLocation = new window.kakao.maps.LatLng( value['latitude'], value['longitude']);
-            let setLevel = 10;
+            let setLevel = 2;
             map.setLevel(setLevel);
             map.panTo(currentLocation);
         }   
@@ -170,7 +178,7 @@ const KakaoMap = () => {
                             <img src="https://i.namu.wiki/i/7jeVH_6qCK1ARphL-QXYaKMHRtJFVGN6wioSM6osgORavCV42-iwKWp_4hmvfxy9VToDHRk13315si8KsWZPpg.webp" alt="" />
                             <ul>
                             <li>선박 정보</li>
-                            <li>현재 위치: rsrp: {value['latitude']}, {value['longitude']}</li>
+                            <li>현재 위치: {value['latitude']}, {value['longitude']}</li>
                             <li>rsrp: {value['rsrp']}</li>
                             
                             <li>...</li>
@@ -190,6 +198,8 @@ const KakaoMap = () => {
     }
     
     const KakaoMap_route = (): any => {
+
+        
         axios({
             method:"GET",
             url:"/api/gpsAPI/gps_route"
