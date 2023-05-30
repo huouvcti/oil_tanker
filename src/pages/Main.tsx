@@ -58,16 +58,16 @@ declare global {
 
 
 const Main = () => {
-  const { kakaoMap_basic, kakaoMap_route, KakaoMap_center } = KakaoMap();
+  const { kakaoMap_basic, KakaoMap_shipList, KakaoMap_route, KakaoMap_center } = KakaoMap();
 
 
-
+    const [shipInfoList, setShipInfoList] = useState("");
   
 
 
 
 
-  useEffect(() => {
+  useEffect(() =>  {
     kakaoMap_basic();
 
 
@@ -95,10 +95,23 @@ const Main = () => {
     let player2 = new window.jsmpeg(client2, {
       canvas: cctv_view[2],
     });
+
+
+    // (async function() {
+    //     setShipInfoList(await kakaoMap_route(shipInfo_more_close));
+
+    //     console.log(shipInfoList)
+    // })(); 
+
+
+   
+
+    let shipInfoList_wrap: any =  document.getElementsByClassName('shipInfoList_wrap')[0];
+
     
   },[])
 
-  kakaoMap_route();
+ 
   
 
   const cctvExit = () => {
@@ -111,6 +124,11 @@ const Main = () => {
     let ship_more_close_radio: any =  document.getElementsByClassName('ship_more_close')[0];
     ship_more_close_radio.checked = true;
   }
+
+
+
+
+  
 
   return (
     
@@ -180,7 +198,7 @@ const Main = () => {
                   </div>
 
                   <hr />
-
+                
 
                   <div className='searchOption_wrap'>
                     <div className='searchOption'>
@@ -202,60 +220,65 @@ const Main = () => {
                   
 
 
-                  <div className='shipInfoList_wrap'>
+                  {/* <div className='shipInfoList_wrap' dangerouslySetInnerHTML={{__html: shipInfoList}}> */}
 
-                  <input type="radio" name='ship_more_visible' className='ship_more_close'/>
+                  {/* <div className='shipInfoList_wrap'> */}
 
-                  <div className='shipInfoList'>
-                      <input type="checkbox" className='ship_visible'/>
-                      <div className='shipInfo_text'>
-                        <p>제주은갈치</p>
-                        <p>배 정보</p>
-                      </div>
-                      <input type="radio" name='ship_more_visible' className='ship_more_visible'/>
+                    {/* <input type="radio" name='ship_more_visible' className='ship_more_close'/>
 
-                      <div className='ship_more'>
-                        <span className='ship_more_close_btn' onClick={shipInfo_more_close}>X</span>
+                    <div className='shipInfoList'>
+                        <input type="checkbox" className='ship_visible'/>
+                        <div className='shipInfo_text'>
+                            <p>제주은갈치</p>
+                            <p>배 정보</p>
+                        </div>
+                        <input type="radio" name='ship_more_visible' className='ship_more_visible'/>
 
-                        <p>제주은갈치11111</p>
-                        <img src="https://i.namu.wiki/i/7jeVH_6qCK1ARphL-QXYaKMHRtJFVGN6wioSM6osgORavCV42-iwKWp_4hmvfxy9VToDHRk13315si8KsWZPpg.webp" alt="" />
-                        <ul>
-                          <li>선박 ID</li>
-                          <li>선박 정보</li>
-                          <li>...</li>
-                          <li>...</li>
-                        </ul>
-                      </div>
+                        <div className='ship_more'>
+                            <span className='ship_more_close_btn' onClick={shipInfo_more_close}>X</span>
+
+                            <p>제주은갈치11111</p>
+                            <img src="https://i.namu.wiki/i/7jeVH_6qCK1ARphL-QXYaKMHRtJFVGN6wioSM6osgORavCV42-iwKWp_4hmvfxy9VToDHRk13315si8KsWZPpg.webp" alt="" />
+                            <ul>
+                            <li>선박 ID</li>
+                            <li>선박 정보</li>
+                            <li>...</li>
+                            <li>...</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <hr />
 
                     <div className='shipInfoList'>
-                      <input type="checkbox" className='ship_visible'/>
-                      <div className='shipInfo_text'>
-                        <p>제주은갈치</p>
-                        <p>배 정보</p>
-                      </div>
-                      <input type="radio" name='ship_more_visible' className='ship_more_visible'/>
+                        <input type="checkbox" className='ship_visible'/>
+                        <div className='shipInfo_text'>
+                            <p>제주은갈치</p>
+                            <p>배 정보</p>
+                        </div>
+                        <input type="radio" name='ship_more_visible' className='ship_more_visible'/>
 
-                      <div className='ship_more'>
-                        <span className='ship_more_close_btn' onClick={shipInfo_more_close}>X</span>
+                        <div className='ship_more'>
+                            <span className='ship_more_close_btn' onClick={shipInfo_more_close}>X</span>
 
-                        <p>제주은갈치</p>
-                        <img src="https://i.namu.wiki/i/7jeVH_6qCK1ARphL-QXYaKMHRtJFVGN6wioSM6osgORavCV42-iwKWp_4hmvfxy9VToDHRk13315si8KsWZPpg.webp" alt="" />
-                        <ul>
-                          <li>선박 ID</li>
-                          <li>선박 정보</li>
-                          <li>...</li>
-                          <li>...</li>
-                        </ul>
-                      </div>
-                    </div>
-
-                    
+                            <p>제주은갈치</p>
+                            <img src="https://i.namu.wiki/i/7jeVH_6qCK1ARphL-QXYaKMHRtJFVGN6wioSM6osgORavCV42-iwKWp_4hmvfxy9VToDHRk13315si8KsWZPpg.webp" alt="" />
+                            <ul>
+                            <li>선박 ID</li>
+                            <li>선박 정보</li>
+                            <li>...</li>
+                            <li>...</li>
+                            </ul>
+                        </div>
+                    </div> */}
 
 
-                  </div>
+                        
+
+
+                    {/* </div> */}
+
+                    <KakaoMap_shipList></KakaoMap_shipList>
 
                 </div>
 
