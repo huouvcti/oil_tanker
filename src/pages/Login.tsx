@@ -14,7 +14,7 @@ const Login = () => {
 
 
 
-    
+
 
 
 
@@ -24,7 +24,7 @@ const Login = () => {
 
   return (
 
-    <div>
+    <div className='loginBackground'>
 
     </div>
   );
