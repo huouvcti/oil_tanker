@@ -5,7 +5,7 @@ import '../../styles/header.scss';
 const Header = () => {
   return (
     <header>
-        유조선 트랙킹
+        k-marintraffic - 선박 위치 모니터링
     </header>
   );
 };

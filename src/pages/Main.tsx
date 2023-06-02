@@ -4,7 +4,7 @@ import Header from '../components/header/Header';
 
 import SideBar from '../components/sideBar/SideBar';
 
-// import ECDIS from '../hooks/ECDIS';
+import ECDIS from '../hooks/ECDIS';
 
 import '../styles/main_E.scss';
 
@@ -15,8 +15,6 @@ import { useInterval } from 'react-use';
 
 import { loadPlayer } from 'rtsp-relay/browser'
 
-
-import MapComponent from '../hooks/ECDIS';
 
 
 
@@ -62,12 +60,12 @@ declare global {
 
 const Main = () => {
 
-  // const { ECDIS_basic, shipList } = ECDIS();
-  // const MapConfo
+  const { ECDIS_basic, ECDIS_shipList, ECDIS_shipRoute } = ECDIS();
 
-  // useEffect(() => {
-  //   shipList()
-  // }, [])
+  ECDIS_shipRoute();
+
+  useEffect(() => {
+  }, [])
 
 
 
@@ -86,11 +84,6 @@ const Main = () => {
 
   // }
 
-
-  // const shipInfo_more_close = () => {
-  //   let ship_more_close_radio: any =  document.getElementsByClassName('ship_more_close')[0];
-  //   ship_more_close_radio.checked = true;
-  // }
 
 
   return (
@@ -134,7 +127,7 @@ const Main = () => {
               <hr />
 
 
-              {/* <ECDIS_shipList></ECDIS_shipList> */}
+              <ECDIS_shipList></ECDIS_shipList>
             </div>
 
             <button className='mapResetBtn'>위치 초기화</button>
@@ -182,8 +175,7 @@ const Main = () => {
 
         </div>
 
-        {/* <ECDIS_basic></ECDIS_basic> */}
-        <MapComponent></MapComponent>
+        <ECDIS_basic></ECDIS_basic>
       </div>
 
 
