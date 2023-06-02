@@ -115,9 +115,18 @@ const ECDIS = () => {
                     let linePath = [];
 
                     for(let i=0; i<item['latitude'].length; i++){
-
                         
-                        linePath.push(fromLonLat([item['longitude'][i], item['latitude'][i]]));  
+                        console.log("-----------------------------")
+                        let trnasPath = fromLonLat([item['longitude'][i], item['latitude'][i]])
+                        let [long, lat] = trnasPath
+                        console.log(long)
+
+
+                        if(!isNaN(long) && !isNaN(lat)){
+                            linePath.push(fromLonLat([item['longitude'][i], item['latitude'][i]]));  
+                        }
+                        
+                        
                     }
 
                     lines.push(linePath)
