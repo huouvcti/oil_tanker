@@ -60,20 +60,13 @@ declare global {
 
 const Main = () => {
 
-  const { ECDIS_basic, ECDIS_shipList, ECDIS_shipRoute } = ECDIS();
+  const { ECDIS_basic, ECDIS_shipRoute,
+    ECDIS_add_marker } = ECDIS();
+    
 
+
+    
   ECDIS_shipRoute();
-
-  useEffect(() => {
-  }, [])
-
-
-
-
-
-
-
-
 
 
 
@@ -126,8 +119,9 @@ const Main = () => {
 
               <hr />
 
+              <ECDIS_add_marker></ECDIS_add_marker>
 
-              <ECDIS_shipList></ECDIS_shipList>
+              {/* <ECDIS_shipList></ECDIS_shipList> */}
             </div>
 
             <button className='mapResetBtn'>위치 초기화</button>
@@ -176,6 +170,9 @@ const Main = () => {
         </div>
 
         <ECDIS_basic></ECDIS_basic>
+
+        
+        
       </div>
 
 
