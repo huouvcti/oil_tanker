@@ -115,6 +115,34 @@
     cursor: pointer;
 }
 
+.zoomInBtn {
+    position: absolute;
+    right: 20px;
+    top: 80px;
+    z-index: 100;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    border-radius: 10px;;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.zoomOutBtn {
+    position: absolute;
+    right: 20px;
+    top: 150px;
+    z-index: 100;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    border-radius: 10px;;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+}
+
 
 
 

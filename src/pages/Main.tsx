@@ -15,6 +15,8 @@ import { useInterval } from 'react-use';
 
 import { loadPlayer } from 'rtsp-relay/browser'
 
+import {useCookies} from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -60,16 +62,16 @@ declare global {
 
 const Main = () => {
 
-  const { ECDIS_basic, ECDIS_shipRoute,
-    ECDIS_add_marker } = ECDIS();
+  const { ECDIS_basic, ECDIS_add_marker, ECDIS_add_line, location_clear, zoom_in, zoom_out } = ECDIS();
     
 
 
-    
-  ECDIS_shipRoute();
+  const [cookies, setCookie, removeCookie] = useCookies();
+  const navigate = useNavigate();
 
-
-
+    if(!cookies.login){
+        navigate("/login");
+    }
 
 
   // const cctvExit = () => {
@@ -120,11 +122,14 @@ const Main = () => {
               <hr />
 
               <ECDIS_add_marker></ECDIS_add_marker>
+              <ECDIS_add_line></ECDIS_add_line>
 
               {/* <ECDIS_shipList></ECDIS_shipList> */}
             </div>
 
-            <button className='mapResetBtn'>위치 초기화</button>
+            <button className='mapResetBtn' onClick={location_clear}>위치 초기화</button>
+            <button className='zoomInBtn' onClick={zoom_in}>+</button>
+            <button className='zoomOutBtn' onClick={zoom_out}>-</button>
 
 
             <div className='cctvWrap cctvWrap_ '>
