@@ -99,48 +99,105 @@
 }
 
 
+.rsrp_color_green {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-color: green;
+    box-shadow: 1px 1px 3px gray;
+    margin-right: 10px;
+}
+
+.rsrp_color_yellow {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-color: yellow;
+    box-shadow: 1px 1px 3px gray;
+    margin-right: 10px;
+}
+
+.rsrp_color_orange {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-color: orange;
+    box-shadow: 1px 1px 3px gray;
+    margin-right: 10px;
+}
+
+.rsrp_color_red {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-color: red;
+    box-shadow: 1px 1px 3px gray;
+    margin-right: 10px;
+}
+
 
 
 
 .mapResetBtn {
     position: absolute;
-    left: 400px;
+    left: 420px;
     top: 80px;
     z-index: 100;
     width: 100px;
-    height: 50px;
-    border-radius: 10px;;
+    height: 40px;
+    
     border: none;
     background-color: #fff;
+    // color: #2B78E2;
+    font-weight: bold;
     cursor: pointer;
+
+    border-radius: 4px;;
+    border: 1px solid rgba(0,0,0,.2);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
 }
 
 .zoomInBtn {
     position: absolute;
-    right: 20px;
-    top: 80px;
+    left: 420px;
+    top: 140px;
     z-index: 100;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     font-size: 30px;
-    border-radius: 10px;;
     border: none;
     background-color: #fff;
     cursor: pointer;
+
+    color: gray;
+    
+    border-radius: 4px;;
+    border: 1px solid rgba(0,0,0,.2);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
 }
 
 .zoomOutBtn {
     position: absolute;
-    right: 20px;
-    top: 150px;
+    left: 420px;
+    top: 195px;
     z-index: 100;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     font-size: 30px;
-    border-radius: 10px;;
     border: none;
     background-color: #fff;
     cursor: pointer;
+    border: 1px solid gray;
+
+    color: gray;
+
+    border-radius: 4px;;
+    border: 1px solid rgba(0,0,0,.2);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
 }
 
 
@@ -150,16 +207,25 @@
     position: absolute;
     z-index: 200;
 
-    width: 380px;
+    width: 400px;
     height: calc(100% - 60px);
-    background: #000;
+    // background: #000;
+    background-color: #2B78E2;
+    background-color: #fff;;
     backdrop-filter: blur(2px);
 
     color: #fff;
+    color: #000;
+
+    border-right: 1px solid gray;
 
 
     display: flex;
     flex-direction: column;
+
+
+    border: 1px solid rgba(0,0,0,.2);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
 
 
 
@@ -195,7 +261,7 @@
       }
       
       .toggle[type="checkbox"]:checked {
-        background-color: #333;
+        background-color: #0E4796;
       }
       
       .toggle[type="checkbox"]:checked::before {
@@ -215,12 +281,15 @@
     justify-content: center;
 
     height: 60px;
+    font-size: 18px;
 }
 
 
 .searchOption_wrap {
     display: flex;
     flex-direction: column;
+    background-color: #2B78E2;
+    color: #fff;
     gap:15px;
     padding: 20px 30px;
 
@@ -269,7 +338,7 @@
         .ship_visible[type="checkbox"] {
             appearance: none;
             position: relative;
-            border: max(2px, 0.1em) solid #fff;
+            border: max(2px, 0.1em) solid #000;
             // background-color: #fff;
             border-radius: 5px;
             width: 30px;
@@ -279,7 +348,7 @@
         .ship_visible[type="checkbox"]::before {
             content:'✔';
             font-size: 20px;
-            color: #333;
+            color: #fff;
             position: absolute;
             left: 5px;
             width: 30px;
@@ -288,7 +357,7 @@
             transition: 0.2s;
         }
         .ship_visible[type="checkbox"]:checked {
-            background-color: #fff;
+            background-color: #2B78E2;
         }
         .ship_visible[type="checkbox"]:checked::before {
             opacity: 100%;
@@ -322,7 +391,7 @@
             content:'⋮';
             font-size: 30px;
             font-weight: bold;
-            color: #fff;
+            color: gray;
             position: absolute;
             left: 5px;
             width: 30px;
@@ -337,12 +406,15 @@
 
         .ship_more {
             position: absolute;
-            left: 380px;
+            z-index: 300;
+            left: 398px;
             top: 186px;
 
             width: 300px;
             height: 500px;
-            background: rgba(0, 0, 0, 0.5);
+            background: #fff;
+            border: 1px solid gray;
+            border-left: none;
             backdrop-filter: blur(2px);
 
             opacity: 0%;
@@ -350,10 +422,20 @@
 
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            padding: 20px;
+            gap: 0px;
+            padding: 0 20px;
             
             display: none;
+
+            border: 1px solid rgba(0,0,0,.2);
+            box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
+
+            p {
+                height: 50px;
+
+                display: flex;
+                align-items: center;
+            }
             
             img {
                 position: relative;
@@ -364,7 +446,14 @@
             }
 
             ul {
+                padding: 20px 0;
                 list-style: none;
+            }
+
+            button {
+                border: none;
+                height: 40px;
+                cursor: pointer;
             }
         }
 
@@ -373,8 +462,8 @@
             position: absolute;
             z-index: 300;
             right: 20px;
-            top: 15px;
-            color: #fff;
+            top: 12px;
+            color: gray;
 
             cursor: pointer;
         }

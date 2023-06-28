@@ -1,5 +1,5 @@
 import { transform } from 'ol/proj';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import 'ol/ol.css';
 import Map from 'ol/Map';
@@ -24,7 +24,7 @@ import ship_icon  from '../assets/images/map_ship_icon.png'
 import ship_icon2  from '../assets/images/map_ship_icon2.png'
 
 
-import {useCookies} from 'react-cookie';
+import {useCookies} from 'react-cookie'
 
 
 
@@ -37,15 +37,16 @@ const ECDIS = () => {
 
     const [cookies, setCookie, removeCookie] = useCookies();
     
-    const CENTER = [126.08024, 35.5745]
-    const ZOOM = 7.8
+    const CENTER = [126.08024, 35.5745];
+    const ZOOM = 7.8;
+    const minZoom = 7.8;
+    const maxZoom = 20;
+
     const [center, setCenter] = useState(CENTER);
     const [zoom, setZoom] = useState(ZOOM);
 
     const mapRef = useRef(null);
 
-    
-    
     const markerSourceRef = useRef(new VectorSource());
     const markerLayer = new VectorLayer({
         source: markerSourceRef.current
@@ -63,47 +64,44 @@ const ECDIS = () => {
 
     let [map, mapSet] = useState(null);
 
-    let [delay, setDelay] = useState(5000);
+    let [delay, setDelay] = useState(1000 * 60);
 
 
     const ECDIS_basic = () => {
 
-        console.log("map start ")
-        
-        useEffect(() => {
-            map = new Map({
-                controls: defaults({ zoom: false, rotate: false }).extend([]),
-                layers: [ // ②
-                
-                    new Tile({
-                        source: new TileImage({
-                            tileUrlFunction: function (tileCoord: any) {
-                                return "https://navada.kr/katecMapTileImg/google/" + (tileCoord[0] - 6) + "/" + tileCoord[2] + "/" + tileCoord[1] + ".png";
-                            }
-                        }),
-                        
-                    }),
-                    lineLayer,
-                    markerLayer,
-                    
-                    
-                ],
-                target: mapRef.current,
-                view: new View({
-                    center: transform(center, 'EPSG:4326', 'EPSG:900913'),
-                    zoom: zoom,
-                    extent: [13136084.488096794, 3786707.6544116065, 14934291.743690653, 4697752.502265213],
-                    minZoom: 7.8,
-                    maxZoom: 20,
-                })
-            });
-    
-            console.log(map)
 
+        useEffect(() => {
+            if (!map) {
+                console.log("map start ")
+            
+                map = new Map({
+                    controls: defaults({ zoom: true, rotate: false }).extend([]),
+                    layers: [ // ②
+                    
+                        new Tile({
+                            source: new TileImage({
+                                tileUrlFunction: function (tileCoord: any) {
+                                    return "https://navada.kr/katecMapTileImg/google/" + (tileCoord[0] - 6) + "/" + tileCoord[2] + "/" + tileCoord[1] + ".png";
+                                }
+                            }),
+                            
+                        }),
+                        lineLayer,
+                        markerLayer,
+                    ],
+                    target: mapRef.current,
+                    view: new View({
+                        center: transform(center, 'EPSG:4326', 'EPSG:900913'),
+                        zoom: zoom,
+                        extent: [13136084.488096794, 3786707.6544116065, 14934291.743690653, 4697752.502265213],
+                        minZoom: minZoom,
+                        maxZoom: maxZoom,
+                    })
+                });
+            }
             
     
-
-        }, []);
+        }, [mapRef.current]);
 
 
         return <div ref={mapRef} id="map"></div>;
@@ -150,10 +148,11 @@ const ECDIS = () => {
 
 
         useEffect(() => {
-            // markers 배열이 업데이트될 때마다 마커를 추가 또는 업데이트
+            // markers 배열이 업데이트될 때sel마다 마커를 추가 또는 업데이트
             console.log("update--------------------------");
 
-            if(cookies.markers && cookies.markers.length > 0){
+            console.log(cookies.markers)
+            if(cookies.markers && cookies.markers.map){
                 const newMarkers = cookies.markers.map((markerData) => {
                     const { latitude, longitude } = markerData;
                     console.log(latitude, longitude)
@@ -179,9 +178,6 @@ const ECDIS = () => {
                 markerSourceRef.current.addFeatures(newMarkers);
             }
             
-
-            
-
         }, [cookies.markers]);
 
 
@@ -196,8 +192,15 @@ const ECDIS = () => {
             setZoom(10);
         }
 
+        const cctv_open = () => {
+            document.getElementsByClassName('cctvWrap')[0].className = "cctvWrap";
+        }
+
+
         return (
-            <div className='shipInfoList_wrap'> 
+        (!(cookies.markers && cookies.markers.map))
+        ? <div></div>
+        : <div className='shipInfoList_wrap'> 
                 <input type="radio" name='ship_more_visible' className='ship_more_close'/>
                 
                 {cookies.markers.map((value, index) => (
@@ -205,7 +208,32 @@ const ECDIS = () => {
                         <input type="checkbox" className='ship_visible'/>
                         <div className='shipInfo_text' onClick={() => currentLocation_move(value)}>
                             <p>{value['router_id']}</p>
-                            <p>rsrp: {value['rsrp']}</p>
+                            <p>
+                                {
+                                    (value['rsrp'] >= -80)
+                                    ? <span className='rsrp_color_green'></span>
+                                    : <></>
+                                }
+
+                                {
+                                    (value['rsrp'] < -80 && value['rsrp'] >= -90)
+                                    ? <span className='rsrp_color_yellow'></span>
+                                    : <></>
+                                }
+
+                                {
+                                    (value['rsrp'] < -90 && value['rsrp'] >= -100)
+                                    ? <span className='rsrp_color_orange'></span>
+                                    : <></>
+                                }
+
+                                {
+                                    (value['rsrp'] < -100)
+                                    ? <span className='rsrp_color_red'></span>
+                                    : <></>
+                                }
+                                RSRP:  {value['rsrp']}
+                            </p>
                         </div>
                         <input type="radio" name='ship_more_visible' className='ship_more_visible'/>
 
@@ -217,10 +245,39 @@ const ECDIS = () => {
                             <ul>
                             <li>선박 정보</li>
                             <li>현재 위치: {value['latitude']}, {value['longitude']}</li>
-                            <li>rsrp: {value['rsrp']}</li>
+                            <li>
+                                {
+                                    (value['rsrp'] >= -80)
+                                    ? <span className='rsrp_color_green'></span>
+                                    : <></>
+                                }
+
+                                {
+                                    (value['rsrp'] < -80 && value['rsrp'] >= -90)
+                                    ? <span className='rsrp_color_yellow'></span>
+                                    : <></>
+                                }
+
+                                {
+                                    (value['rsrp'] < -90 && value['rsrp'] >= -100)
+                                    ? <span className='rsrp_color_orange'></span>
+                                    : <></>
+                                }
+
+                                {
+                                    (value['rsrp'] < -100)
+                                    ? <span className='rsrp_color_red'></span>
+                                    : <></>
+                                }
+                                
+                            
+                                RSRP: {value['rsrp']}
+                            </li>
                             
                             <li>...</li>
                             </ul>
+
+                            <button onClick={cctv_open}>CCTV</button>
                         </div>
                     </div>
                 ))}
@@ -247,10 +304,11 @@ const ECDIS = () => {
 
                     for(let i=0; i<item['latitude'].length; i++){
                         
-                        console.log("-----------------------------")
+                        
                         let trnasPath = fromLonLat([item['longitude'][i], item['latitude'][i]])
                         let [long, lat] = trnasPath
-                        console.log(long)
+                        // console.log("-----------------------------")
+                        // console.log(long)
 
                         if(!isNaN(long) && !isNaN(lat)){
                             linePath.push(fromLonLat([item['longitude'][i], item['latitude'][i]]));  
@@ -313,7 +371,7 @@ const ECDIS = () => {
                     return line;
                 });
             
-                lineSourceRef.current.clear();
+                // lineSourceRef.current.clear();
                 lineSourceRef.current.addFeatures(newLines);
             }
 
@@ -340,11 +398,16 @@ const ECDIS = () => {
     }
 
     const zoom_in = () => {
-        setZoom(zoom + 1);
+        if(zoom <= maxZoom){
+            setZoom(zoom + 1);
+        }
     }
 
     const zoom_out = () => {
-        setZoom(zoom - 1);
+        if(zoom >= minZoom){
+            setZoom(zoom - 1);
+        }
+
     }
 
 

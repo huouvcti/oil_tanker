@@ -6,7 +6,7 @@ import SideBar from '../components/sideBar/SideBar';
 
 import KakaoMap from '../hooks/KakaoMap';
 
-import '../styles/main.scss';
+// import '../styles/main.scss';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faHouse, faFolder, faPowerOff } from "@fortawesome/free-solid-svg-icons";

@@ -1,0 +1,62 @@
+.mobile_regitInfo {
+    width: 100%;
+    height: 100%;
+
+    background-color: #fff;
+
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        background-color: #111833;
+        color: #fff;
+        height: 50px;
+        
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .content{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        gap: 10px;
+        padding: 20px;
+        
+
+        h1 {
+            font-size: 20px;
+        }
+
+        img {
+            border-radius: 20px;
+            height: 200px;
+        }
+
+        ul {
+            margin-top: 10px;
+            
+            list-style: none;
+            
+
+            li {
+                height: 30px;
+            }
+        }
+
+
+        button {
+            position: absolute;
+            bottom: 20px;
+            width: calc(100% - 40px);
+            height: 50px;
+            border: none;
+
+        }
+    }
+
+}

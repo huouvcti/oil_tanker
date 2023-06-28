@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import axios from 'axios';
 
-import '../styles/main.scss';
+// import '../styles/main.scss';
 import { JsxElement } from 'typescript';
 
 declare global {
@@ -89,7 +89,6 @@ const KakaoMap = () => {
         // 마커 클릭 이벤트
         window.kakao.maps.event.addListener(marker, 'click', function() {
             document.getElementsByClassName('cctvWrap')[0].className = "cctvWrap";
-            
             
 
         });

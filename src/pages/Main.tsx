@@ -64,8 +64,6 @@ const Main = () => {
 
   const { ECDIS_basic, ECDIS_add_marker, ECDIS_add_line, location_clear, zoom_in, zoom_out } = ECDIS();
     
-
-
   const [cookies, setCookie, removeCookie] = useCookies();
   const navigate = useNavigate();
 
@@ -74,11 +72,38 @@ const Main = () => {
     }
 
 
-  // const cctvExit = () => {
-  //   document.getElementsByClassName('cctvWrap')[0].className = "cctvWrap cctvWrap_";
+  const cctv_close = () => {
+    document.getElementsByClassName('cctvWrap')[0].className = "cctvWrap cctvWrap_";
 
-  // }
+  }
 
+
+
+  useEffect(()=>{
+    const client0 = new WebSocket('ws://ocean-gps.com:9000');
+    const client1 = new WebSocket('ws://ocean-gps.com:9001');
+    const client2 = new WebSocket('ws://ocean-gps.com:9002');
+    // const client4 = new WebSocket('ws://localhost:9004');
+
+    const cctv_view = document.getElementsByClassName('cctv_view');
+
+    const cctv_view_wrap = document.getElementsByClassName('cctv_view_wrap')[0];
+
+    const cctv_select = document.getElementsByClassName('cctv_select');
+    
+  
+    let player0 = new window.jsmpeg(client0, {
+      canvas: cctv_view[0],
+    });
+
+    let player1 = new window.jsmpeg(client1, {
+      canvas: cctv_view[1],
+    });
+
+    let player2 = new window.jsmpeg(client2, {
+      canvas: cctv_view[2],
+    });
+  })
 
 
   return (
@@ -121,6 +146,7 @@ const Main = () => {
 
               <hr />
 
+              <div style={{padding: "20px 30px 0 30px", fontWeight: "bold"}}>선박 리스트</div>
               <ECDIS_add_marker></ECDIS_add_marker>
               <ECDIS_add_line></ECDIS_add_line>
 
@@ -133,7 +159,7 @@ const Main = () => {
 
 
             <div className='cctvWrap cctvWrap_ '>
-              <button>나가기</button>
+              <button onClick={cctv_close}>나가기</button>
 
               <div className="cctv_view_wrap">
                 <div id="cctv1">
@@ -173,8 +199,11 @@ const Main = () => {
 
 
         </div>
-
+        
         <ECDIS_basic></ECDIS_basic>
+        
+
+        {/* {MapView} */}
 
         
         

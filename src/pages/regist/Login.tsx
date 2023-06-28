@@ -6,12 +6,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-import '../styles/login.scss';
+import '../../styles/mobile/login.scss';
 
 
 
 
-const Login = () => {
+const RegistLogin = () => {
     const [cookies, setCookie, removeCookie] = useCookies();
     const navigate = useNavigate()
 
@@ -62,24 +62,13 @@ const Login = () => {
             }
         }
 
-
-        
-
-        
     }
-
-
-
-
-
-
-
 
 
   return (
 
-    <div className='loginBackground'>
-        <div className='loginTitle'>k-marintraffic - 선박 위치 모니터링</div>
+    <div className='mobile_loginBackground'>
+        <div className='loginTitle'>k-marintraffic<br/>선박 위치 모니터링</div>
 
         <div className='loginWrap'>
             <div className='login'>
@@ -105,4 +94,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default RegistLogin;

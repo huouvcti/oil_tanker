@@ -1,5 +1,4 @@
-.loginBackground {
-
+.mobile_loginBackground {
     width: 100%;
     height: 100%;
 
@@ -8,11 +7,13 @@
     // background-repeat: no-repeat;
     // background-size: cover;
 
-    background-color: #233067;
+    background-color: #111833;
     background-position-y: -200px;
 
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+
+    padding: 100px 0;
     // justify-items: center;
     // align-content: center;
 
@@ -23,14 +24,15 @@
         justify-content: center;
         align-items: center;
         color: #fff;
-        font-size: 40px;;
+        font-size: 25px;;
         font-weight: bold;
+        text-align: center;
     }
     
     
     
     .loginWrap {
-        background-color: rgba(0, 0, 0, 0.5);
+        // background-color: rgba(0, 0, 0, 0.5);
     
         
         width: 100%;
@@ -41,12 +43,16 @@
         justify-content: center;
     
         .login {
+            width: 80%;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
             gap: 15px;
     
     
             .inputWrap {
+                width: 100%;
                 display: flex;
                 flex-direction: column;
                 gap: 5px;
@@ -58,7 +64,7 @@
                 }
     
                 input{
-                    width: 400px;
+                    width: 100%;
                     height: 50px;
                     padding-left: 10px;
                 }
@@ -73,7 +79,7 @@
     
     
             input[type=submit]{
-                width: 400px;
+                width: 100%;
                 height: 50px;
                 border: none;
                 cursor: pointer;
@@ -87,12 +93,6 @@
                 font-size: 16px;
             }
             
-    
-    
-    
-            
         }
     }
 }
-
-
